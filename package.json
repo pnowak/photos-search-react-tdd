@@ -6,8 +6,9 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack dev-server",
-    "lint": "eslint src/ test/"
+    "start": "webpack-dev-server --open",
+    "lint": "eslint src/ test/",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,8 @@
     "sass-loader": "^10.0.1",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.11.2",
