@@ -1,0 +1,117 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks"
+    ],
+    "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/react-in-jsx-scope": 2,
+        "arrow-parens": [
+            "error",
+            "as-needed",
+            {
+                "requireForBlockBody": true
+            }
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "arrow-body-style": "off",
+        "class-methods-use-this": "off",
+        "comma-dangle": "off",
+        "consistent-return": "off",
+        "func-names": "off",
+        "import/no-extraneous-dependencies": "off",
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1,
+                "FunctionDeclaration": {
+                    "parameters": "first"
+                },
+                "FunctionExpression": {
+                    "parameters": "first"
+                }
+            }
+        ],
+        "newline-per-chained-call": "off",
+        "no-constant-condition": [
+            "error",
+            {
+                "checkLoops": false
+            }
+        ],
+        "no-eq-null": "error",
+        "no-mixed-operators": [
+            "error",
+            {
+                "groups": [
+                    [
+                        "+",
+                        "-",
+                        "*",
+                        "/",
+                        "%",
+                        "**"
+                    ]
+                ]
+            }
+        ],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1
+            }
+        ],
+        "no-param-reassign": "off",
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "overrides": [
+        {
+            "files": [
+                "test/**"
+            ],
+            "rules": {
+                "import/extensions": "off",
+                "no-restricted-globals": "off",
+                "no-undef": "off"
+            }
+        }
+    ]
+}
