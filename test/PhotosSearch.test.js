@@ -20,4 +20,10 @@ describe('PhotosSearch', () => {
 
     expect(element('div#photosSearch')).not.toBeNull();
   });
+
+  it('has a search input element', () => {
+    render(<PhotosSearch />, container);
+
+    expect(element('input[type="search"]')).not.toBeNull();
+  });
 });

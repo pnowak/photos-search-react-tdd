@@ -1,3 +1,7 @@
 import React from 'react';
 
-export const PhotosSearch = () => <div id="photosSearch"></div>;
+export const PhotosSearch = () => (
+  <div id="photosSearch">
+    <input type="search"></input>
+  </div>
+);
