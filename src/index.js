@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { PhotosSearch } from './PhotosSearch';
+import { PhotosSearchResult } from './PhotosSearchResult';
 
-ReactDOM.render(<PhotosSearch />, document.getElementById('root'));
+ReactDOM.render(<PhotosSearchResult />, document.getElementById('root'));

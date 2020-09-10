@@ -3,7 +3,7 @@ import ReactTestUtils, { act } from 'react-dom/test-utils';
 import 'whatwg-fetch';
 import { createContainer, fetchResponseOk } from './helpers';
 import {
-  PhotosSearch,
+  PhotosSearch
 } from '../src/PhotosSearch';
 
 const searchTerm = 'office';
