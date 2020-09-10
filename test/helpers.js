@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 export const createContainer = () => {
   const container = document.createElement('div');
   const element = selector => container.querySelector(selector);
+  const elements = selector => container.querySelectorAll(selector);
 
   return {
     render: component =>
@@ -12,6 +13,7 @@ export const createContainer = () => {
       }),
     container,
     element,
+    elements
   };
 };
 
