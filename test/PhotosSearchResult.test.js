@@ -21,4 +21,11 @@ describe('PhotosSearchResult', () => {
 
     expect(element('div#photosSearchResult')).not.toBeNull();
   });
+
+  it('has a search input element with a placeholder', () => {
+    render(<PhotosSearchResult />, container);
+
+    expect(element('input[type="search"]')).not.toBeNull();
+    expect(element('input[type="search"]').getAttribute('placeholder')).toMatch('Search free high-resolution photos');
+  });
 });
