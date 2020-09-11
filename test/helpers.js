@@ -11,6 +11,8 @@ export const createContainer = () => {
       act(() => {
         ReactDOM.render(component, container);
       }),
+    renderAndWait: async component =>
+      await act(async () => ReactDOM.render(component, container)),
     container,
     element,
     elements
