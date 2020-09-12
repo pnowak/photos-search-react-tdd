@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-export const PhotosSearchResult = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [enterSearchTerm, setEnterSearchTerm] = useState('');
-  const [searchedPhotos, setSearchedPhotos] = useState([]);
+export const PhotosSearchResult = ({ enterSearchTerm, error, isLoading, searchedPhotos, onFocus }) => {
   const [modalPhoto, setModalPhoto] = useState(null);
   const [isShow, setIsShow] = useState(false);
 
   const handleSearchTextChanged = ({ target: { value } }) => {
-    setSearchTerm(value);
+    (value);
   };
 
-  const handleEnterKeyPress = ({ key, target: { value } }) => {
-    if (key === 'Enter') {
-      setEnterSearchTerm(value);
-    }
-  };
-
-  const handleShowDialog = ({target}) => {
+  const handleShowDialog = ({ target }) => {
     const modalPhoto = searchedPhotos.filter(photo => photo.id === target.id);
 
     setIsShow(!isShow);
@@ -27,7 +18,11 @@ export const PhotosSearchResult = () => {
   const handleHideDialog = () => {
     setIsShow(!isShow);
     setModalPhoto(null);
-  }
+  };
+
+  const Error = () => <div className="error">An error occurred during save.</div>;
+
+  const Loading = () => <div>Loading ...</div>;
 
   const Modal = ({ modalPhoto }) => {
     const {
@@ -70,63 +65,46 @@ export const PhotosSearchResult = () => {
     return (
       <div id="photos">
         <ul>
-          {photos.map(photo => (
-            <li key={photo.id}>
-              <img
-                src={photo.links.download}
-                width={200}
-                height={200}
-                id={photo.id}
-                onClick={handleShowDialog}
-              />
-              <Tags tags={photo.tags} />
-            </li>
-          ))}
+          {photos &&
+            photos.map(photo => (
+              <li key={photo.id}>
+                <img
+                  src={photo.links.download}
+                  width={200}
+                  height={200}
+                  id={photo.id}
+                  onClick={handleShowDialog}
+                />
+                <Tags tags={photo.tags} />
+              </li>
+            ))}
         </ul>
       </div>
     );
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (enterSearchTerm.length >= 3) {
-        const response = await window.fetch(
-          `https://api.unsplash.com/search/photos?page=1&query=${enterSearchTerm}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept-Version': 'v1',
-              Authorization:
-                'Client-ID 1Tp3BgB50l24P2tMh4hITZoCtVA2PxyXBfR1S4og6H4',
-            },
-          }
-        );
-
-        const data = await response.json();
-        
-        setSearchedPhotos(data.results);
-      }
-    };
-
-    fetchData();
-  }, [enterSearchTerm]);
-
   return (
     <div id="photosSearchResult">
-      <input
-        type="search"
-        placeholder="Search free high-resolution photos"
-        value={searchTerm}
-        onChange={handleSearchTextChanged}
-        onKeyPress={handleEnterKeyPress}
-      ></input>
-      <h2 id="searchedTerm">{enterSearchTerm}</h2>
-      <DisplaySearchedPhoto
-        photos={searchedPhotos}
-        handleShowDialog={handleShowDialog}
-      />
-      {isShow ? <Modal modalPhoto={modalPhoto} /> : null}
+      {error ? <Error /> : null}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <input
+            type="search"
+            placeholder="Search free high-resolution photos"
+            value={enterSearchTerm}
+            onFocus={onFocus}
+            onChange={handleSearchTextChanged}
+          ></input>
+          <h2 id="searchedTerm">{enterSearchTerm}</h2>
+          <DisplaySearchedPhoto
+            photos={searchedPhotos}
+            handleShowDialog={handleShowDialog}
+          />
+          {isShow ? <Modal modalPhoto={modalPhoto} /> : null}
+        </>
+      )}
     </div>
   );
-}
+};
