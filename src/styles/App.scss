@@ -1,0 +1,161 @@
+$font-stack:    Roboto, sans-serif;
+$primary-color: #ffffff;
+$list-style-none: none;
+$base-font-size: 1rem;
+
+@mixin grid-items($column-start, $column-end, $row-start, $row-end) {
+  grid-column-start: $column-start;
+  grid-column-end: $column-end;
+  grid-row-start: $row-start;
+  grid-row-end: $row-end;
+}
+
+body {
+  background: url('../../dist/img/fabien-bellanger-DnjcZatnK_k-unsplash.jpg') no-repeat;
+  font: $base-font-size $font-stack;
+  color: $primary-color;
+}
+
+#photosSearch {
+  color: $primary-color;
+  display: grid;
+  grid-template-columns: 16% auto 16%;
+  grid-template-rows: 200px 20% 20% 15% 10%;
+  line-height: $base-font-size * 2;
+
+  h1 {
+    @include grid-items(2, 3, 2, 3);
+    font-size: $base-font-size * 3;
+  }
+
+  p {
+    @include grid-items(2, 3, 3, 4);
+  }
+
+  input {
+    @include grid-items(2, 3, 4, 5);
+    border: none;
+    border-radius: $base-font-size / 3;
+    padding: $base-font-size;
+    margin-bottom: $base-font-size;
+  }
+
+  span {
+    @include grid-items(2, 3, 5, 6);
+  }
+}
+
+#photosSearchResult {
+  background-color:$primary-color;
+  padding: 20px 100px;
+  text-align: center;
+
+  input {
+    border: none;
+    border-radius: $base-font-size / 3;
+    padding: $base-font-size;
+    background-color: #ededeb;
+    vertical-align: middle;
+    display: inline-block;
+    width: 66%;
+  }
+
+  h1 {
+    font-size: $base-font-size * 3;
+    text-align: left;
+    color: #000000;
+  }
+
+  h1:first-letter {
+    text-transform:capitalize;
+  }
+
+  ul {
+    list-style: $list-style-none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+    width: 100%;
+
+    li {
+    display: inline-block;
+    margin-bottom: $base-font-size;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      ol {
+        list-style: $list-style-none;
+        padding: 0;
+        text-align: left;
+
+        li {
+          display: inline-block;
+          background-color: #ededeb;
+          color:  #818281;
+          border-radius: $base-font-size / 6;
+          padding: $base-font-size / 4;
+          margin-right: $base-font-size / 3;
+          font-size: $base-font-size / 1.5;
+        }
+
+        li:first-letter {
+          text-transform:capitalize;
+        }
+      }
+    }
+  }
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: $base-font-size * 3;
+  overflow: auto;
+  z-index: 1;
+
+  #wrapper {
+    background-color: $primary-color;
+    padding: $base-font-size;
+
+    #user {
+      text-align: left;
+      line-height: $base-font-size;
+      margin-bottom: $base-font-size;
+
+      img {
+        float: left;
+        margin-right: 10px;
+      }
+
+      span {
+        font-size: $base-font-size;
+        color: #000000;
+      }
+
+      span:last-child {
+        font-size: $base-font-size / 2;
+        color: #818281;
+      }
+    }
+
+    img {
+      max-width: 70%;
+      max-height: 60%;
+    }
+
+    p {
+      text-align: left;
+      font-size: $base-font-size;
+      color: #000000;
+    }
+  }
+}

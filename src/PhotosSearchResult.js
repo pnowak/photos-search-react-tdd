@@ -4,9 +4,7 @@ export const PhotosSearchResult = ({ enterSearchTerm, error, isLoading, searched
   const [modalPhoto, setModalPhoto] = useState(null);
   const [isShow, setIsShow] = useState(false);
 
-  const handleSearchTextChanged = ({ target: { value } }) => {
-    (value);
-  };
+  const handleSearchTextChanged = ({ target: { value } }) => value;
 
   const handleShowDialog = ({ target }) => {
     const modalPhoto = searchedPhotos.filter(photo => photo.id === target.id);
@@ -33,18 +31,15 @@ export const PhotosSearchResult = ({ enterSearchTerm, error, isLoading, searched
 
     return (
       <div id="modal">
-        <div id="user">
-          <span>{name}</span>
-          <img src={profile_image.small} />
-          <span>{`@${twitter_username}`}</span>
+        <div id="wrapper">
+          <div id="user">
+            <img src={profile_image.small} />
+            <span>{name}</span><br />
+            <span>{`@${twitter_username}`}</span>
+          </div>
+          <img src={download} onClick={handleHideDialog} />
+          <p>{description}</p>
         </div>
-        <img
-          src={download}
-          width={500}
-          height={500}
-          onClick={handleHideDialog}
-        />
-        <p>{description}</p>
       </div>
     );
   };
@@ -53,7 +48,7 @@ export const PhotosSearchResult = ({ enterSearchTerm, error, isLoading, searched
     return (
       <ol>
         {tags.map(tag => (
-          <li key={tag.title}>
+          <li key={tag.title} className="tag">
             <span>{tag.title}</span>
           </li>
         ))}
@@ -65,19 +60,16 @@ export const PhotosSearchResult = ({ enterSearchTerm, error, isLoading, searched
     return (
       <div id="photos">
         <ul>
-          {photos &&
-            photos.map(photo => (
-              <li key={photo.id}>
-                <img
-                  src={photo.links.download}
-                  width={200}
-                  height={200}
-                  id={photo.id}
-                  onClick={handleShowDialog}
-                />
-                <Tags tags={photo.tags} />
-              </li>
-            ))}
+          {photos.map(photo => (
+            <li key={photo.id}>
+              <img
+                src={photo.links.download}
+                id={photo.id}
+                onClick={handleShowDialog}
+              />
+              <Tags tags={photo.tags} />
+            </li>
+          ))}
         </ul>
       </div>
     );
@@ -92,12 +84,11 @@ export const PhotosSearchResult = ({ enterSearchTerm, error, isLoading, searched
         <>
           <input
             type="search"
-            placeholder="Search free high-resolution photos"
             value={enterSearchTerm}
             onFocus={onFocus}
             onChange={handleSearchTextChanged}
           ></input>
-          <h2 id="searchedTerm">{enterSearchTerm}</h2>
+          <h1>{enterSearchTerm}</h1>
           <DisplaySearchedPhoto
             photos={searchedPhotos}
             handleShowDialog={handleShowDialog}

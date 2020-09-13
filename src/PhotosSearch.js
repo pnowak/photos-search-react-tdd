@@ -9,6 +9,11 @@ export const PhotosSearch = ({ onKeyPress }) => {
 
   return (
     <div id="photosSearch">
+      <h1>Unplash</h1>
+      <p>
+        The internet's source of <a href="/">freely-usable images</a>.<br />
+        Powered by creators everywhere.
+      </p>
       <input
         type="search"
         placeholder="Search free high-resolution photos"
@@ -16,6 +21,7 @@ export const PhotosSearch = ({ onKeyPress }) => {
         onChange={handleSearchTextChanged}
         onKeyPress={onKeyPress}
       ></input>
+      <span>Trending: flowers, wallpapers, background, happy, love.</span>
     </div>
   );
 };
